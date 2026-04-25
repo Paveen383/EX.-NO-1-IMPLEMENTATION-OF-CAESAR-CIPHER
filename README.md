@@ -29,39 +29,60 @@ becomes C. To change a message back, each letter is replaced by the one three be
 
 
 ## PROGRAM :-
-```py
+```c
 
-def caesar_cipher_encrypt(text, key):
-    cipher = ""
-    for ch in text:
-        if ch.isupper():
-            cipher += chr((ord(ch) - ord('A') + key) % 26 + ord('A'))
-        elif ch.islower(): 
-            cipher += chr((ord(ch) - ord('a') + key) % 26 + ord('a'))
-        else:
-            cipher += ch  
-    return cipher
-def caesar_cipher_decrypt(cipher, key):
-    plain = ""
-    for ch in cipher:
-        if ch.isupper():  
-            plain += chr((ord(ch) - ord('A') - key) % 26 + ord('A'))
-        elif ch.islower():  
-            plain += chr((ord(ch) - ord('a') - key) % 26 + ord('a'))
-        else:
-            plain += ch
-    return plain
-plain = input("Enter the plain text: ")
-key = int(input("Enter the key value: "))
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
-print("\nPLAIN TEXT:", plain)
+void encrypt(char text[], int key)
+{
+    int i;
+    for(i=0; text[i]!='\0'; i++)
+    {
+        if(isupper(text[i]))
+            text[i] = ((text[i]-'A'+key)%26)+'A';
+        else if(islower(text[i]))
+            text[i] = ((text[i]-'a'+key)%26)+'a';
+    }
+}
 
-cipher = caesar_cipher_encrypt(plain, key)
-print("ENCRYPTED TEXT:", cipher)
+void decrypt(char text[], int key)
+{
+    int i;
+    for(i=0; text[i]!='\0'; i++)
+    {
+        if(isupper(text[i]))
+            text[i] = ((text[i]-'A'-key+26)%26)+'A';
+        else if(islower(text[i]))
+            text[i] = ((text[i]-'a'-key+26)%26)+'a';
+    }
+}
 
-decrypted = caesar_cipher_decrypt(cipher, key)
-print("DECRYPTED TEXT:", decrypted)
+int main()
+{
+    char plain[100], cipher[100], decrypted[100];
+    int key;
 
+    printf("Enter the plain text: ");
+    fgets(plain, sizeof(plain), stdin);
+    plain[strcspn(plain,"\n")] = '\0';
+
+    printf("Enter the key value: ");
+    scanf("%d",&key);
+
+    strcpy(cipher, plain);
+    encrypt(cipher, key);
+
+    strcpy(decrypted, cipher);
+    decrypt(decrypted, key);
+
+    printf("\nPLAIN TEXT: %s", plain);
+    printf("\nENCRYPTED TEXT: %s", cipher);
+    printf("\nDECRYPTED TEXT: %s", decrypted);
+
+    return 0;
+}
 ```
 
 
