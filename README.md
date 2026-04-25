@@ -88,7 +88,7 @@ int main()
 
 ## OUTPUT :-
 
-<img width="683" height="283" alt="image" src="https://github.com/user-attachments/assets/e124fe86-ff1f-40b3-964f-39a01f4a16fa" />
+<img width="1706" height="803" alt="image" src="https://github.com/user-attachments/assets/28874561-c56c-4f64-9026-538e426cbd2f" />
 
 ## Result:
 The implementation of the simple substitution technique named Caesar cipher using Python language was completed and executed successfully.
